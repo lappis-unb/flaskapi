@@ -1,5 +1,10 @@
 from flask import Flask, jsonify
 from db_connector import DbConnector
+import simplejson
+from collections import defaultdict
+from decimal import Decimal
+
+
 
 app = Flask(__name__)
 
@@ -16,10 +21,14 @@ def hello_world():
 
     spreadsheet = db_connector.execute_query(sql_query)
 
-    print(spreadsheet[1])
+    raised_amount = defaultdict(Decimal)
+    spreadsheet.pop(0)
 
-    # return jsonify(spreadsheet)
-    return "Hi!"
+    for line in spreadsheet:
+        raised_amount[line[0]] += line[1]
+
+    return simplejson.dumps(raised_amount)
+    # return "Hi!"
 
 
 if __name__ == '__main__':
