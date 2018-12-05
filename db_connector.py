@@ -37,7 +37,8 @@ class DbConnector:
         cursor.execute(query)
         data = list(map(list, cursor.fetchall()))
         columns = [column[0] for column in cursor.description]
-        table = [columns] + data
+        # print(columns)
+        table = data
         cursor.close()
 
         return table
