@@ -1,18 +1,14 @@
-from flask import Flask, jsonify
+from flask import Flask, Response
 from db_connector import DbConnector
 import simplejson
 from collections import defaultdict
 from decimal import Decimal
 
-
-
 app = Flask(__name__)
 
 
-
-
-@app.route('/')
-def hello_world():
+@app.route('/raised_amount', methods=['GET'])
+def raised_amount():
     db_connector = DbConnector()
 
     file = open('sql_scripts/raised_amount.sql', 'r')
@@ -27,8 +23,11 @@ def hello_world():
     for line in spreadsheet:
         raised_amount[line[0]] += line[1]
 
-    return simplejson.dumps(raised_amount)
-    # return "Hi!"
+    json = simplejson.dumps(raised_amount, use_decimal=True, sort_keys=True)
+
+    resp = Response(json, status=200, mimetype='application/json')
+
+    return resp
 
 
 if __name__ == '__main__':
