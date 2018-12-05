@@ -19,7 +19,6 @@ class DbConnector:
             'DATABASE': os.environ.get('DB_NAME', ''),
         }
 
-
         db_parameters = (
             'DRIVER=FreeTDS;SERVER={0};PORT={1};DATABASE=;UID={2};PWD={3};\
              TDS_Version=8.0;'
@@ -36,8 +35,6 @@ class DbConnector:
         cursor = self.db.cursor()
         cursor.execute(query)
         data = list(map(list, cursor.fetchall()))
-        columns = [column[0] for column in cursor.description]
-        # print(columns)
         table = data
         cursor.close()
 
