@@ -1,8 +1,8 @@
-SELECT interessado.Uf, SUM(CaptacaoReal)
+SELECT COUNT(DISTINCT projetos.CgcCpf), interessado.Uf
 FROM SAC.dbo.Projetos as projetos
      INNER JOIN SAC.dbo.Interessado as interessado
-              ON interessado.CgcCpf = projetos.CgcCpf
+              On projetos.CgcCPf = interessado.CgcCpf
        INNER JOIN SAC.dbo.Captacao as capt
               ON (capt.AnoProjeto = projetos.AnoProjeto AND capt.Sequencial = projetos.Sequencial)
-GROUP BY interessado.Uf;
-
+              WHERE CaptacaoReal > 0
+              GROUP BY interessado.Uf
