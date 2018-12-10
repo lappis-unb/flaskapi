@@ -18,7 +18,7 @@ class DbConnector:
             'PASSWORD': os.environ.get('DB_PASSWORD', ''),
             'DATABASE': os.environ.get('DB_NAME', ''),
         }
-
+        print(db_credentials)
         db_parameters = (
             'DRIVER=FreeTDS;SERVER={0};PORT={1};DATABASE=;UID={2};PWD={3};\
              TDS_Version=8.0;'

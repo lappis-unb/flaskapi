@@ -1,4 +1,4 @@
-from flask import Flask, Response
+from flask import Flask, Response, url_for
 from db_connector import DbConnector
 import simplejson
 
@@ -22,6 +22,12 @@ def get_sql_results(sql_query):
 
     return response
 
+
+@app.route('/')
+def home():
+    x = url_for('raised_amount') + url_for('proponent_count') + url_for('approved_amount')
+
+    return x
 
 @app.route('/raised_amount', methods=['GET'])
 def raised_amount():
