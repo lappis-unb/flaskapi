@@ -70,7 +70,7 @@ def proponent_complete():
 
     response = Response(json, status=200, mimetype='application/json')
     response.headers.add('Access-Control-Allow-Origin', '*')
-s
+
     return response
 
 
