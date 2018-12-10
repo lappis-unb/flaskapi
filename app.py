@@ -27,9 +27,9 @@ def get_sql_results(sql_query):
 
 @app.route('/')
 def home():
-    x = url_for('raised_amount') + url_for('proponent_count') + url_for('approved_amount') + '/'
+    urls = url_for('raised_amount') + url_for('proponent_count') + url_for('approved_amount') + '/'
 
-    return x
+    return urls
 
 
 @app.route('/raised_amount', methods=['GET'])
