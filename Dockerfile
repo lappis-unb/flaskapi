@@ -1,7 +1,7 @@
 FROM debian:buster-slim
 
-RUN mkdir /salic-ml
-WORKDIR /salic-ml
+RUN mkdir /flaskapi
+WORKDIR /flaskapi
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
         python3 \
@@ -18,16 +18,18 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 RUN update-alternatives --install /usr/bin/pip pip /usr/bin/pip3 10
 RUN update-alternatives --install /usr/bin/python python /usr/bin/python3 10
-ADD ./setup.py /salic-ml/
+# ADD ./setup.py /flaskapi/
 
-ADD ./requirements.txt /salic-ml/
-ADD ./docker/odbcinst.ini /etc/odbcinst.ini
+ADD ./requirements.txt /flaskapi/
+ADD ./odbcinst.ini /etc/odbcinst.ini
 
 RUN pip3 install -r requirements.txt
-RUN python3 setup.py develop
-ADD . /salic-ml/
+# RUN python3 setup.py develop
+ADD . /flaskapi/
 
 EXPOSE 8080
 ENV FLASK_ENV=development
-ENV FLASK_APP=/salic-ml/salicml/api/main.py
+ENV FLASK_APP=/flaskapi/app.py
+ENV LC_ALL=C.UTF-8
+ENV LANG=C.UTF-8
 CMD ["flask", "run", "--host=0.0.0.0", "--port=8080", "--debugger"]
