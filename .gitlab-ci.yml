@@ -22,14 +22,14 @@ build:
         - docker
 
 
-#deploy to lappis.rocks:
-#    stage: deploy
-#    image: cdrx/rancher-gitlab-deploy
-#    environment: production
-#    script:
-#        - upgrade --environment $RANCHER_ENVIRONMENT --stack $RANCHER_STACK --service web --debug
-#        - upgrade --environment $RANCHER_ENVIRONMENT --stack $RANCHER_STACK --service nginx --debug
-#    only:
-#        - /master/
-#    tags:
-#        - docker
+deploy to lappis.rocks:
+   stage: deploy
+   image: cdrx/rancher-gitlab-deploy
+   environment: prod
+   script:
+       - upgrade --environment $RANCHER_ENVIRONMENT --stack $RANCHER_STACK --service flaskapi --debug
+    #    - upgrade --environment $RANCHER_ENVIRONMENT --stack $RANCHER_STACK --service nginx --debug
+   only:
+       - /master/
+   tags:
+       - docker
