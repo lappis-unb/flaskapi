@@ -32,6 +32,7 @@ def home():
 @app.route('/raised_amount', methods=['GET'])
 def raised_amount():
     response = get_sql_results(get_sql_query('sql_scripts/raised_amount.sql'))
+    response.headers.add('Access-Control-Allow-Origin', '*')
 
     return response
 
@@ -39,12 +40,14 @@ def raised_amount():
 @app.route('/approved_amount', methods=['GET'])
 def approved_amount():
     response = get_sql_results(get_sql_query('sql_scripts/approved_amount.sql'))
+    response.headers.add('Access-Control-Allow-Origin', '*')
 
     return response
 
 @app.route('/proponent_count', methods=['GET'])
 def proponent_count():
     response = get_sql_results(get_sql_query('sql_scripts/proponent_count.sql'))
+    response.headers.add('Access-Control-Allow-Origin', '*')
 
     return response
 
