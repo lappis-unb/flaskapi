@@ -1,0 +1,36 @@
+stages:
+    - build
+    - deploy
+
+variables:
+    WEB_IMAGE: $CI_REGISTRY_IMAGE/web:$CI_COMMIT_REF_NAME
+
+build:
+    image: docker:latest
+    stage: build
+    services:
+        - docker:dind
+    script:
+        - cd flaskapi/
+        - docker login -u "gitlab-ci-token" -p "$CI_JOB_TOKEN" $CI_REGISTRY
+        - docker build -f ./Dockerfile -t $WEB_IMAGE .
+        - docker tag $WEB_IMAGE $CI_REGISTRY_IMAGE/web:latest
+        - docker push $WEB_IMAGE
+        - docker push $CI_REGISTRY_IMAGE/web:latest
+    only:
+        - /master|develop/
+    tags:
+        - docker
+
+
+#deploy to lappis.rocks:
+#    stage: deploy
+#    image: cdrx/rancher-gitlab-deploy
+#    environment: production
+#    script:
+#        - upgrade --environment $RANCHER_ENVIRONMENT --stack $RANCHER_STACK --service web --debug
+#        - upgrade --environment $RANCHER_ENVIRONMENT --stack $RANCHER_STACK --service nginx --debug
+#    only:
+#        - /master/
+#    tags:
+#        - docker
