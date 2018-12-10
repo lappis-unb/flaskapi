@@ -1,4 +1,4 @@
-SELECT COUNT(DISTINCT projetos.CgcCpf), interessado.Uf
+SELECT interessado.Uf, COUNT(DISTINCT projetos.CgcCpf)
 FROM SAC.dbo.Projetos as projetos
      INNER JOIN SAC.dbo.Interessado as interessado
               On projetos.CgcCPf = interessado.CgcCpf

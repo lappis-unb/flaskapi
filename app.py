@@ -36,6 +36,12 @@ def approved_amount():
 
     return response
 
+@app.route('/proponent_count', methods=['GET'])
+def proponent_count():
+    response = get_sql_results(get_sql_query('sql_scripts/proponent_count.sql'))
+
+    return response
+
 
 if __name__ == '__main__':
     app.run()
