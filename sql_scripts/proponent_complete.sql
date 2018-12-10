@@ -1,4 +1,4 @@
-SELECT interessado.Uf, SUM(Aprovado)
+SELECT interessado.Uf, COUNT(DISTINCT interessado.CgcCpf), SUM(Aprovado), SUM(Captado)
 FROM SAC.dbo.Projetos as projetos
 INNER JOIN SAC.dbo.interessado as interessado
 ON interessado.CgcCpf = projetos.CgcCpf
