@@ -1,8 +1,8 @@
-Click==7.0
+Click>=6.7
 Flask==1.0.2
-itsdangerous==1.1.0
+itsdangerous==0.24
 Jinja2==2.10
-MarkupSafe==1.1.0
-pyodbc==4.0.24
-simplejson==3.16.0
+MarkupSafe==1.0
+pyodbc==4.0.22
+simplejson==3.15.0
 Werkzeug==0.14.1
