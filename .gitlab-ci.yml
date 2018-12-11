@@ -27,7 +27,7 @@ deploy to lappis.rocks:
    image: cdrx/rancher-gitlab-deploy
    environment: prod
    script:
-       - upgrade --environment $RANCHER_ENVIRONMENT --stack $RANCHER_STACK --service flaskapi --debug
+       - upgrade --environment $RANCHER_ENVIRONMENT --stack $RANCHER_STACK --service apipromova --debug
     #    - upgrade --environment $RANCHER_ENVIRONMENT --stack $RANCHER_STACK --service nginx --debug
    only:
        - /master/

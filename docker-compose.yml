@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: ./Dockerfile
     volumes:
-      - .:/flaskapi
+      - .:/apipromova
     depends_on:
       - salic_db
     environment:
