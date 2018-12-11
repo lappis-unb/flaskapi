@@ -27,9 +27,11 @@ def get_sql_results(sql_query):
 
 @app.route('/')
 def home():
-    urls = url_for('raised_amount') + url_for('proponent_count') + url_for('approved_amount') + '/'
+    x = {"Try": "Catch"}
+    response = Response(x, status=200, mimetype='application/json')
+    response.headers.add('Access-Control-Allow-Origin', '*')
 
-    return urls
+    return response
 
 
 @app.route('/raised_amount', methods=['GET'])
