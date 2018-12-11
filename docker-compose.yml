@@ -40,5 +40,6 @@ services:
       dockerfile: ./Dockerfile_nginx
     ports:
       - "8080:8080"
+      - "8043:8043"
     depends_on:
       - web
