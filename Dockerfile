@@ -27,9 +27,9 @@ RUN pip3 install -r requirements.txt
 # RUN python3 setup.py develop
 ADD . /apipromova/
 
-EXPOSE 8080
+EXPOSE 5000
 ENV FLASK_ENV=development
 ENV FLASK_APP=/apipromova/app.py
 ENV LC_ALL=C.UTF-8
 ENV LANG=C.UTF-8
-CMD ["flask", "run", "--host=0.0.0.0", "--port=8080", "--debugger"]
+CMD ["flask", "run", "--host=0.0.0.0", "--port=5000", "--debugger"]
