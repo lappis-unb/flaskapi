@@ -18,7 +18,7 @@ services:
       - DB_USER=
       - DB_PASSWORD=
     ports:
-      - '5000:5000'
+      - '8080:8080'
 
   salic_db:
     image: lappis/openconnect-globalprotect
@@ -33,12 +33,3 @@ services:
     privileged: true
     cap_add:
       - NET-ADMIN
-
-  nginx:
-    build:
-      context: .
-      dockerfile: ./Dockerfile_nginx
-    ports:
-      - "8080:8080"
-    depends_on:
-      - web
